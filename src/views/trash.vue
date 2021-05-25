@@ -7,10 +7,10 @@
                 <p>{{post.title}}</p>
                 <p>{{post.description}}</p>
                 <p>{{post.price}}</p>
-                <button @click="$store.commit('deleteFavoritePost',post.id)">Delete</button>
+                <button @click="$store.commit('deleteTrash',post.id)">Delete</button>
+                <button @click="this.$store.dispatch('addPost',post)">Restore</button>
             </div>
         </div>
-
     </div>
 </template>
 <script>

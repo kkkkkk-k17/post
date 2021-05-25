@@ -16,6 +16,11 @@ const store = createStore({
             console.log(postIndex)
             state.favoritesPosts.splice(postIndex, 1)
         },
+        deleteTrash(state,id){
+            let postIndex = state.trash.findIndex(item => item.id === id);
+            console.log(postIndex)
+            state.trash.splice(postIndex, 1)
+        },
         addFavoritPost(state, post) {
             state.favoritesPosts.push(post)
         },
