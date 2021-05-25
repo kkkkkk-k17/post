@@ -127,22 +127,6 @@
     tr:nth-child(even) {
         background-color: #dddddd;
     }
-
-    .grid-container {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        background-color: #ebecf3;
-        padding: 5px;
-    }
-
-    .grid-item {
-        background-color: rgba(219, 225, 236, 0.8);
-        border: 1px solid rgba(252, 248, 248, 0.8);
-        padding: 20px;
-        font-size: 20px;
-        text-align: center;
-    }
-
     button {
         background-color: #03175f;
         border: none;

@@ -20,6 +20,8 @@ const store = createStore({
             let postIndex = state.trash.findIndex(item => item.id === id);
             console.log(postIndex)
             state.trash.splice(postIndex, 1)
+
+
         },
         addFavoritPost(state, post) {
             state.favoritesPosts.push(post)
@@ -55,11 +57,13 @@ const store = createStore({
         addPost(state, post) {
             state.posts.splice(0, 0, post)
             router.push('/')
+            let postIndex = state.trash.findIndex(item => item.id === post.id);
+            console.log(postIndex)
+            state.trash.splice(postIndex, 1)
         }
     },
     actions: {
         getPosts({commit}) {
-            console.log(this.state.users)
             axios({
                 method: "get",
                 url: "http://localhost:5000/api/v1/products",

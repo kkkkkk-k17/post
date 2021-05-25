@@ -3,15 +3,14 @@
     <h1>Favorites</h1>
 
     <div class="grid-container">
-      <div class="grid-item" v-for="post in $store.state.favoritesPosts" :key="post.id">
+      <div class="grid-item" v-for="post in this.$store.state.favoritesPosts" :key="post.id">
         <p>{{post.id}}</p>
         <p>{{post.title}}</p>
         <p>{{post.description}}</p>
         <p>{{post.price}}</p>
-        <button @click="$store.commit('deleteFavoritePost',post.id)">Delete</button>
+        <button @click="this.$store.commit('deleteFavoritePost',post.id)">Delete</button>
       </div>
     </div>
-
   </div>
 </template>
 <script>
@@ -26,23 +25,6 @@
 
 </script>
 <style>
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .item {
-    flex: 1 1 100%;
-    height: 35vh;
-
-    margin-left: 2px;
-    margin-right: 2px;
-    margin-bottom: 4px;
-
-    background-color: #f7f6fd;
-  }
-
   .grid-container {
     display: grid;
     grid-template-columns: auto auto auto;

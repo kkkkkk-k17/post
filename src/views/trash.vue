@@ -7,7 +7,7 @@
                 <p>{{post.title}}</p>
                 <p>{{post.description}}</p>
                 <p>{{post.price}}</p>
-                <button @click="$store.commit('deleteTrash',post.id)">Delete</button>
+                <button @click="this.$store.commit('deleteTrash',post.id)">Delete</button>
                 <button @click="this.$store.dispatch('addPost',post)">Restore</button>
             </div>
         </div>
@@ -22,22 +22,6 @@
     }
 </script>
 <style>
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-
-    .item {
-        flex: 1 1 100%;
-        height: 35vh;
-
-        margin-left: 2px;
-        margin-right: 2px;
-        margin-bottom: 4px;
-
-        background-color: #f7f6fd;
-    }
 
     .grid-container {
         display: grid;
