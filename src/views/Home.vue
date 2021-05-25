@@ -1,9 +1,8 @@
 <template>
     <div class="home">
-
-        <button @click="visible=true">TABLE</button>
+        <button @click="this.$router.push('/')">TABLE</button>
         |
-        <button @click="visible=false">GRID</button>
+        <button @click="this.$router.push('/grid')">GRID</button>
         <br><br><br>
         <div style="flex-direction: row; display: flex">
             <div @click="this.$router.push('/add')">
@@ -18,7 +17,7 @@
             </div>
         </div>
         <br>
-        <div v-if="visible">
+        <div>
             <table>
                 <tr>
                     <th>Selected</th>
@@ -30,7 +29,8 @@
                 </tr>
                 <tr v-for="post in posts" :key="post.id">
                     <td>
-                        <div v-if="!this.selected.find(item=>item.id===post.id)" @click="this.selected.push(post)">
+                        <div v-if="!this.selected.find(item=>item.id===post.id)" @click="this.selected.push(post)"
+                             title="Select">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <circle fill="#010101" cx="12" cy="12" r="8"/>
                             </svg>
@@ -49,28 +49,27 @@
                     <td>
                         <div style="flex-direction: row; display: flex">
                             <div v-if="!this.$store.state.favoritesPosts.find(item=>item.id===post.id)"
-                                 @click="this.$store.commit('addFavoritPost',post)">
+                                 @click="this.$store.commit('addFavoritPost',post)" title="Like">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                     <path fill="none" d="M0 0H24V24H0z"/>
                                     <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2zm-3.566 15.604c.881-.556 1.676-1.109 2.42-1.701C18.335 14.533 20 11.943 20 9c0-2.36-1.537-4-3.5-4-1.076 0-2.24.57-3.086 1.414L12 7.828l-1.414-1.414C9.74 5.57 8.576 5 7.5 5 5.56 5 4 6.656 4 9c0 2.944 1.666 5.533 4.645 7.903.745.592 1.54 1.145 2.421 1.7.299.189.595.37.934.572.339-.202.635-.383.934-.571z"/>
                                 </svg>
                             </div>
 
-                            <div v-else @click="this.$store.commit('deleteFavoritePost',post.id)">
+                            <div v-else @click="this.$store.commit('deleteFavoritePost',post.id)" title="dislike">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                     <path fill="none" d="M0 0H24V24H0z"/>
                                     <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"/>
                                 </svg>
                             </div>
 
-
-                            <div @click=" this.$router.push(`/posts/${post.id}`)">
+                            <div @click=" this.$router.push(`/posts/${post.id}`)" title="Edit">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
                                 </svg>
                             </div>
 
-                            <div @click="this.$store.dispatch('deletePost',post)">
+                            <div @click="this.$store.dispatch('deletePost',post)" title="Delete">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
                                 </svg>
@@ -84,28 +83,6 @@
             <button @click="this.$store.commit('deletePosts')">Delete all</button>
         </div>
 
-
-        <div v-else class="grid-container">
-            <div class="grid-item" v-for="post in posts" :key="post.id">
-                <p>{{post.id}}</p>
-                <p>{{post.title}}</p>
-                <p>{{post.description}}</p>
-                <p>{{post.price}}</p>
-                <div v-if="!this.$store.state.favoritesPosts.find(item=>item.id===post.id)"
-                     @click="this.$store.commit('addFavoritPost',post)">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                        <path fill="none" d="M0 0H24V24H0z"/>
-                        <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2zm-3.566 15.604c.881-.556 1.676-1.109 2.42-1.701C18.335 14.533 20 11.943 20 9c0-2.36-1.537-4-3.5-4-1.076 0-2.24.57-3.086 1.414L12 7.828l-1.414-1.414C9.74 5.57 8.576 5 7.5 5 5.56 5 4 6.656 4 9c0 2.944 1.666 5.533 4.645 7.903.745.592 1.54 1.145 2.421 1.7.299.189.595.37.934.572.339-.202.635-.383.934-.571z"/>
-                    </svg>
-                </div>
-                <div v-else @click="this.$store.commit('deleteFavoritePost',post.id)">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                        <path fill="none" d="M0 0H24V24H0z"/>
-                        <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"/>
-                    </svg>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 <script>
@@ -113,7 +90,6 @@
         name: 'Home',
         data() {
             return {
-                visible: true,
                 selected: []
             }
         },

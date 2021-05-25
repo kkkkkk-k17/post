@@ -3,6 +3,8 @@ import Home from '../views/Home.vue'
 import Post from '../views/post'
 import addPost from "../views/addPost";
 import trash from "../views/trash"
+import Grid from "../views/Grid"
+
 
 const routes = [
     {
@@ -33,6 +35,11 @@ const routes = [
         path: '/trash',
         name: 'trash',
         component: trash
+    },
+    {
+        path: '/grid',
+        name: 'Grid',
+        component: Grid
     },
 ]
 const router = createRouter({
