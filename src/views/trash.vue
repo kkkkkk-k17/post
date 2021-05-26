@@ -15,10 +15,7 @@
 </template>
 <script>
     export default {
-        name: 'trash',
-        mounted() {
-            console.log(this.$store.state.trash)
-        },
+        name: 'trash'
     }
 </script>
 <style>

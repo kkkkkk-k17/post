@@ -5,12 +5,21 @@ import addPost from "../views/addPost";
 import trash from "../views/trash"
 import Grid from "../views/Grid"
 
-
 const routes = [
     {
-        path: '/',
+        path:'/',
+        redirect:'/posts'
+
+    },
+    {
+        path: '/posts',
         name: 'Home',
-        component: Home
+        component: Home,
+        children:[
+
+
+
+        ]
     },
     {
         path: '/posts/:id',

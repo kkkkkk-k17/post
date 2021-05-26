@@ -15,12 +15,7 @@
 </template>
 <script>
   export default {
-    name: 'Favorites',
-
-    mounted() {
-      console.log(this.$store.state.favoritesPosts)
-
-    },
+    name: 'Favorites'
   }
 
 </script>

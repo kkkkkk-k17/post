@@ -66,7 +66,6 @@
         methods: {
             deleteSelect(id) {
                 let postIndex = this.selected.findIndex(item => item.id === id);
-                console.log(postIndex)
                 this.selected.splice(postIndex, 1)
             }
         },
