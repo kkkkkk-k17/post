@@ -4,10 +4,10 @@
 
         <button @click="this.$router.push('/')">TABLE</button>
         |
-        <button @click="this.$router.push('/posts/grid')">GRID</button>
+        <button @click="this.$router.push('/grid')">GRID</button>
 
         <br><br><br>
-        <div style="flex-direction: row; display: flex">
+        <div class="am">
             <div @click="this.$router.push('posts/add')" title="Add">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
@@ -60,7 +60,7 @@
                         </svg>
                     </td>
                     <td>
-                        <div style="flex-direction: row; display: flex">
+                        <div  class="am">
                             <div v-if="!this.$store.state.favoritesPosts.find(item=>item.id===post.id)"
                                  @click="this.$store.commit('addFavoritPost',post)" title="Like">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -89,14 +89,12 @@
                             </div>
                         </div>
                     </td>
-
                 </tr>
             </table>
             <br>
             <button @click="this.$store.commit('deleteSelectedPosts',this.selected)">Delete</button>
             <button @click="this.$store.commit('deletePosts')">Delete all</button>
         </div>
-
     </div>
 </template>
 <script>
@@ -115,15 +113,12 @@
                 if (del === true) {
                     this.$store.dispatch('deletePost', post)
                 }
-
-
             },
             deleteSelect(id) {
                 let postIndex = this.selected.findIndex(item => item.id === id);
                 console.log(postIndex)
                 this.selected.splice(postIndex, 1)
             },
-
         },
         computed: {
             posts() {
@@ -142,6 +137,10 @@
         border-collapse: collapse;
         width: 100%;
     }
+    .am{
+        flex-direction: row;
+        display: flex
+    }
 
     td, th {
         border: 1px solid #dddddd;
@@ -154,7 +153,7 @@
     }
 
     button {
-        background-color: #333333;
+        background-color: #312f2f;
         border: none;
         color: white;
         padding: 10px 18px;

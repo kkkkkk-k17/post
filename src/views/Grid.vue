@@ -113,7 +113,7 @@
     }
 
     button {
-        background-color: #03175f;
+        background-color: #333;
         border: none;
         color: white;
         padding: 10px 18px;
